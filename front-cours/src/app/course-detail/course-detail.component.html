@@ -1,0 +1,22 @@
+<div class="container mt-4" *ngIf="course">
+
+  <h2>Détail du cours</h2>
+
+  <div class="card p-3">
+
+    <img 
+  [src]="course.image && course.image.startsWith('http') 
+    ? course.image 
+    : 'http://localhost:3000/uploads/' + course.image"
+  class="img-fluid mb-3"
+  style="max-height:200px;">
+
+    <h3>{{course.title}}</h3>
+
+    <p><b>Description :</b> {{course.description}}</p>
+    <p><b>Niveau :</b> {{course.level}}</p>
+    <p><b>Formateur :</b> {{course.formateur}}</p>
+
+  </div>
+
+</div>

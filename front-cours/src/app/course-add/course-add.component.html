@@ -1,0 +1,82 @@
+<div class="container mt-5">
+
+  <div class="card shadow p-4">
+
+    <!-- 🔥 TITRE -->
+    <h3 class="mb-4 text-center">➕ Ajouter un cours</h3>
+
+    <!-- TITRE -->
+    <div class="mb-3">
+      <label class="form-label">Titre</label>
+      <input [(ngModel)]="course.title"
+             class="form-control"
+             placeholder="Ex: Angular 17">
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <input [(ngModel)]="course.description"
+             class="form-control"
+             placeholder="Description du cours">
+    </div>
+
+    <!-- NIVEAU -->
+    <div class="mb-3">
+      <label class="form-label">Niveau</label>
+      <select [(ngModel)]="course.level" class="form-select">
+        <option value="">-- Choisir niveau --</option>
+        <option value="débutant">Débutant</option>
+        <option value="intermédiaire">Intermédiaire</option>
+        <option value="avancé">Avancé</option>
+      </select>
+    </div>
+
+    <!-- FORMATEUR -->
+    <div class="mb-3">
+      <label class="form-label">Formateur</label>
+      <input [(ngModel)]="course.formateur"
+             class="form-control"
+             placeholder="Nom du formateur">
+    </div>
+
+    <!-- IMAGE URL -->
+    <div class="mb-3">
+      <label class="form-label">URL de l'image</label>
+      <input [(ngModel)]="course.image"
+             class="form-control"
+             placeholder="https://...">
+    </div>
+
+    <!-- UPLOAD IMAGE -->
+    <div class="mb-3">
+      <label class="form-label">Ou choisir depuis PC</label>
+      <input type="file"
+             (change)="onFileSelected($event)"
+             class="form-control">
+    </div>
+
+    <!-- 👀 PREVIEW IMAGE -->
+    <div class="text-center mb-3" *ngIf="course.image || selectedFile">
+
+      <img 
+        *ngIf="course.image && !selectedFile"
+        [src]="course.image"
+        class="preview-img">
+
+      <img 
+        *ngIf="selectedFile"
+        [src]="previewUrl"
+        class="preview-img">
+
+    </div>
+
+    <!-- BOUTON -->
+    <button class="btn btn-primary w-100 mt-3"
+            (click)="submit()">
+      🚀 Ajouter
+    </button>
+
+  </div>
+
+</div>

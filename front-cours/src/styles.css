@@ -1,0 +1,35 @@
+/* 🌈 VARIABLES */
+:root {
+  --primary: #4f46e5;
+  --secondary: #6366f1;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --bg: #f4f6fb;
+  --card-bg: #ffffff;
+}
+
+/* 🌍 GLOBAL */
+body {
+  background: var(--bg);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* TITRES */
+h2 {
+  font-weight: 700;
+  color: #333;
+}
+
+/* INPUTS */
+input, select {
+  border-radius: 10px !important;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* BOUTONS */
+.btn {
+  border-radius: 10px;
+  font-weight: 500;
+}
