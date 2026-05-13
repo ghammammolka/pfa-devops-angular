@@ -1,0 +1,27 @@
+services:
+
+  frontend:
+    build: ./front-cours
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./cours-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      DATABASE_URL: mongodb://mongo:27017/coursdb
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
