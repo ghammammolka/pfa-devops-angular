@@ -1,35 +1,35 @@
 const multer = require('multer');
-const path = require('path');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('../../config/cloudinary');
 
-// config upload
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
+// stockage cloudinary
+const storage = new CloudinaryStorage({
+cloudinary: cloudinary,
+params: {
+folder: 'cours-app',
+allowed_formats: ['jpg', 'png', 'jpeg', 'webp']
+}
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 module.exports = app => {
 
-  const router = require('express').Router();
-  const courseController = require('../controllers/course.controller');
+const router = require('express').Router();
+const courseController = require('../controllers/course.controller');
 
-  // ✅ CREATE avec upload
-  router.post('/courses', upload.single('image'), courseController.create);
+// CREATE
+router.post('/courses', upload.single('image'), courseController.create);
 
-  // GET
-  router.get('/courses', courseController.findAll);
-  router.get('/courses/:id', courseController.findOne);
+// GET
+router.get('/courses', courseController.findAll);
+router.get('/courses/:id', courseController.findOne);
 
-  // ✅ UPDATE avec upload
-  router.put('/courses/:id', upload.single('image'), courseController.update);
+// UPDATE
+router.put('/courses/:id', upload.single('image'), courseController.update);
 
-  // DELETE
-  router.delete('/courses/:id', courseController.delete);
+// DELETE
+router.delete('/courses/:id', courseController.delete);
 
-  app.use('/api', router);
+app.use('/api', router);
 };
