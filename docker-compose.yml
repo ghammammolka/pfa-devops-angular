@@ -14,7 +14,7 @@ services:
     depends_on:
       - mongo
     environment:
-      DATABASE_URL: mongodb://mongo:27017/coursdb
+      DATABASE_URL: mongodb+srv://molkagh02_db_user:admin123@cluster0.icghoco.mongodb.net/coursdb?retryWrites=true&w=majority&appName=Cluster0
 
   mongo:
     image: mongo
