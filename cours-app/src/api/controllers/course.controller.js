@@ -7,7 +7,7 @@ exports.create = (req, res) => {
 
   // 🔥 gérer image fichier OU URL
   const image = req.file
-    ? req.file.path
+    ? req.file.filename
     : req.body.image;
 
   const newCourse = new Course({
@@ -84,7 +84,7 @@ exports.update = (req, res) => {
 
   // 🔥 gérer image fichier OU URL
   const image = req.file
-    ? req.file.path
+    ? req.file.filename
     : req.body.image;
 
   const updatedData = {
