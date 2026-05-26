@@ -5,9 +5,9 @@ exports.create = (req, res) => {
 
   const { title, description, level, formateur } = req.body;
 
-  // 🔥 gérer image fichier OU URL
+  // ✅ image cloudinary OU URL
   const image = req.file
-    ? req.file.filename
+    ? req.file.path
     : req.body.image;
 
   const newCourse = new Course({
@@ -17,7 +17,6 @@ exports.create = (req, res) => {
     formateur,
     image
   });
-
 
   newCourse.save()
     .then(() => res.status(200).send({
@@ -82,9 +81,9 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
-  // 🔥 gérer image fichier OU URL
+  // ✅ image cloudinary OU URL
   const image = req.file
-    ? req.file.filename
+    ? req.file.path
     : req.body.image;
 
   const updatedData = {
